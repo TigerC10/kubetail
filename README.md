@@ -11,11 +11,11 @@ Just download the [kubetail](https://raw.githubusercontent.com/johanhaleby/kubet
 
 You can also install kubetail using [brew](https://brew.sh/):
 
-	$ brew tap johanhaleby/kubetail && brew install kubetail
+  $ brew tap johanhaleby/kubetail && brew install kubetail
 
 It's also possible to install kubetail abbreviated to `kt` by using the `--with-short-names` suffix:
 
-	$ brew tap johanhaleby/kubetail && brew install kubetail --with-short-names
+  $ brew tap johanhaleby/kubetail && brew install kubetail --with-short-names
 
 Note that you may need to run `compinit` for zsh to pick-up the changes in competition after having upgraded from the the non abbreviated installation.
 
@@ -62,7 +62,7 @@ If you're using [zgen](https://github.com/tarjoilija/zgen):
 ### Completion
 
 The easiest option is to install kubetail from homebrew to dynamically display the pods names on `$ kubetail <tab>`. Alternatively install any of the [completion scripts](completion/) (bash/zsh/fish) manually. For example:
-* On Ubuntu, copy the [kubetail.bash](https://raw.githubusercontent.com/johanhaleby/kubetail/master/completion/kubetail.bash) script to `/etc/bash_completion.d/`. 
+* On Ubuntu, copy the [kubetail.bash](https://raw.githubusercontent.com/johanhaleby/kubetail/master/completion/kubetail.bash) script to `/etc/bash_completion.d/`.
 * On Mac with zsh copy the [kubetail.zsh](https://raw.githubusercontent.com/johanhaleby/kubetail/master/completion/kubetail.zsh) script to `/usr/local/share/zsh/site-functions/_kubetail`.
 * On Mac with fish copy the [kubetail.fish](https://raw.githubusercontent.com/johanhaleby/kubetail/master/completion/kubetail.fish) script to `~/.config/fish/completions/`.
 
@@ -72,7 +72,7 @@ Don't forget to restart your terminal afterwards.
 
 First find the names of all your pods:
 
-	$ kubectl get pods
+  $ kubectl get pods
 
 This will return a list looking something like this:
 
@@ -80,8 +80,8 @@ This will return a list looking something like this:
 NAME                   READY     STATUS    RESTARTS   AGE
 app1-v1-aba8y          1/1       Running   0          1d
 app1-v1-gc4st          1/1       Running   0          1d
-app1-v1-m8acl  	       1/1       Running   0          6d
-app1-v1-s20d0  	       1/1       Running   0          1d
+app1-v1-m8acl          1/1       Running   0          6d
+app1-v1-s20d0          1/1       Running   0          1d
 app2-v31-9pbpn         1/1       Running   0          1d
 app2-v31-q74wg         1/1       Running   0          1d
 my-demo-v5-0fa8o       1/1       Running   0          3h
@@ -90,27 +90,27 @@ my-demo-v5-yhren       1/1       Running   0          2h
 
 To tail the logs of the two "app2" pods in one go simply do:
 
-	$ kubetail app2
+  $ kubetail app2
 
 To tail only a specific container from multiple pods specify the container like this:
 
-	$ kubetail app2 -c container1
+  $ kubetail app2 -c container1
 
 You can repeat `-c` to tail multiple specific containers:
 
-	$ kubetail app2 -c container1 -c container2
+  $ kubetail app2 -c container1 -c container2
 
 To tail multiple applications at the same time seperate them by comma:
 
-	$ kubetail app1,app2
+  $ kubetail app1,app2
 
 For advanced matching you can use regular expressions:
 
-	$ kubetail "^app1|.*my-demo.*" --regex
+  $ kubetail "^app1|.*my-demo.*" --regex
 
 Supply `-h` for help and additional options:
 
-	$ kubetail -h
+  $ kubetail -h
 
 ## Colors
 
@@ -121,15 +121,15 @@ By using the `-k` argument you can specify how kubetail makes use of colors (onl
 | pod | Only the pod name is colorized but the logged text is using the terminal default color |
 | line | The entire line is colorized (default) |
 | false | Don't colorize the output at all |
-   
+
 Example:
 
-	$ kubetail app2 -k false
-	
-	
+  $ kubetail app2 -k false
+
+
 ## Filtering / Highlighting etc
 
-kubetail itself doesn't have filtering or highlighting capabilities built-in. If you're on MacOSX I recommend using [iTerm2](https://www.iterm2.com/) which allows for continuous highlighting of search terms, good scrolling capabilities and multitab arrangements. Another useful feature of iTerm2 is the "timeline" (`cmd` + `shift` + `e`) which lets you display a timeline in your own local timezone next to the logs (that are typically in UTC). 
+kubetail itself doesn't have filtering or highlighting capabilities built-in. If you're on MacOSX I recommend using [iTerm2](https://www.iterm2.com/) which allows for continuous highlighting of search terms, good scrolling capabilities and multitab arrangements. Another useful feature of iTerm2 is the "timeline" (`cmd` + `shift` + `e`) which lets you display a timeline in your own local timezone next to the logs (that are typically in UTC).
 
 If you're not using iTerm2 or think that kubetail is lacking in features there's a [fork](https://github.com/aks/kubetail) of kubetail made by [Alan Stebbens](https://github.com/aks) that allows for richer configuration and uses [multitail](https://www.vanheusden.com/multitail/) and [bash-lib](https://github.com/aks/bash-lib). Alan has been kind enough to provide a pull request but my current thinking is that I'd like kubetail to stay simple and small and not use any dependencies.
 
